@@ -31,6 +31,9 @@ def choice_selector(choice_list, text):
             return ""
     return new_suggestion
 
+def no_vacay():
+    print("You did not go on vacation")
+
 
 ## MAIN FUNCTION to select a trip for user
 def welcome_trip_generator():
