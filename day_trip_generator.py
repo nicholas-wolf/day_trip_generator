@@ -31,12 +31,29 @@ def choice_selector(choice_list, text):
             return ""
     return new_suggestion
 
+
 def no_vacay():
     print("You did not go on vacation")
 
+# function to confirm choices
+def confirmation(destination, restaurant, transportation, entertainment):
+    user_confirmation_choice = input("Are you satisfied with your trip? Enter y/n: ")
+    if user_confirmation_choice == ("y"):
+        print("You went to  " + destination + ", and eat at " + restaurant + ", and traveled by " + transportation + ", and did " + entertainment + ".")
+        print("thank you for using random trip generator.")  
+    else:
+        print("You did not confirm a trip.")
+        return False
 
-## MAIN FUNCTION to select a trip for user
+
+## MAIN FUNCTION
 def welcome_trip_generator():
+    
+    destinations_list = ["Atlanta", "New York", "Paris", "London"]
+    restaurant_list = ["McDonald's", "Burger King", "Taco Bell", "Subway"]
+    transportation_list = ["Car", "Scooter", "Bicycle", ]
+    entertainment_list = ["Museum", "Walk through park", "Movies"]
+
     welcome_day_trip_generator = "Welcome to your day trip generator, we will help you choose your trip!"
     print(welcome_day_trip_generator)
 
@@ -49,7 +66,13 @@ def welcome_trip_generator():
             if transportation != "":
                 entertainment = choice_selector(entertainment_list, "entertaiment")
                 if entertainment != "":
-                    print("You went to  " + destination + ", and eat at " + restaurant + ", and traveled by " + transportation + ", and did " + entertainment + ".")
+                    returnedConfirmation = confirmation(destination, restaurant, transportation, entertainment)
+                    if returnedConfirmation == False:
+                        new_trip = input("Would you like to select a new trip?")
+                        if new_trip == "y":
+                            welcome_trip_generator()
+                        else:
+                            print("thank you for using random trip generator.")        
                 else:
                     no_vacay()
             else:
@@ -62,4 +85,3 @@ def welcome_trip_generator():
 
 
 welcome_trip_generator()
-
